@@ -1,0 +1,111 @@
+<%# ADDING HEADER %>
+<%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: Login" , style: "css/style.css"}); -%>
+
+<%# ADDING NAVBAR %>
+<section class="title_login">
+    <%- include("partials/navbar.ejs");  -%>
+</section>
+
+<section class="main_login">
+    <div class="container align-items-center">
+     <div class="login-title animate__animated animate__backInDown"> <span class=" display-6"><b>Welcome to CollegeGeeks</b>
+      </span>
+    </div>
+        <div class="card shadow login_card  mt-4">
+          <% if(error.length >0){ %>
+            <div class=" alert alert-danger d-flex align-items-center" role="alert">
+                <div>
+                    <i class="fas fa-exclamation-triangle"></i> <b><%=error %></b> 
+                </div>
+              </div>
+            <% } %>
+            <% if(success.length >0){ %>
+              <div class=" alert alert-success d-flex align-items-center" role="alert">
+                <div>
+                    <i class="fas fa-exclamation-triangle"></i> <b><%=success %></b> 
+                </div>
+              </div>
+              <% } %>  
+            <div class="card-header">
+                LOGIN   
+            </div>
+            <div class="card-body">
+                <form action="/login" method="POST">
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Email address</label>
+                      <input type="email" class="form-control" id="email" name="email" autocomplete="email"   required>
+                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="forgetPassword form-text" style="float: right;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"> 
+                        Forget your Password?</div>
+                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <input name="password" type="password" id="password" class="form-control" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                      <div class="form-check ">
+                        <input id="showPassowrd" class="form-check-input" type="checkbox"  value="true" style="width: 1.2rem; height:1.2rem" onclick="showPassword()">
+                        <label for="showPassowrd" class="form-check-label">Show Password</label>
+                    </div>
+                    </div>
+                    
+                    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+          </div>
+          <p class="notHavelogin mt-2 animate__animated animate__backInRight"> don't have Account / <a href="/signup">SignUp</a> here</p>
+
+
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Verification form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+
+
+      <!-- modal body -->
+
+      <div class="modal-body">
+        <form action="/forgetPassword" method="POST" >
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Enter your Registered Email</label>
+            <input type="email" class="form-control" name="email" id="email" autocomplete="email" required>
+          </div>
+          <button type="submit" style="float: right;" class="btn btn-danger rounded-bottom">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    </div>
+</section>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+  function showPassword() { 
+      x= document.getElementById("password");
+      if(x.type === "password"){
+          x.type = "text";
+      }
+      else{
+          x.type ="password";
+      }
+   }
+</script>
+</body>
+
+</html>
